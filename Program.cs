@@ -263,6 +263,44 @@ int[,] FillArray(int x, int y){
     return result;
     }
 
+// Рекомендовано решить(задача с семинара)
+
+// Отсортировать нечетные столбцы(смотрите по индексам) массива по возрастанию. Вывести массив изначальный и массив с отсортированными нечетными столбцами
+
+
+Console.WriteLine("--------------------------------------------------");
+Console.WriteLine("Дополнительная задача");
+
+int f = InputNumbers("Введите количество столбцов: ");
+int g = InputNumbers("Введите количество строк: ");
+
+int[,] Array3 = GetArray(f, g, -10, 10); 
+
+PrintArray(Array3);
+Console.WriteLine("");
+PrintArray(ArrayTurn2(Array3));
+
+int[,] ArrayTurn2(int[,] array)
+{
+    int temp = 0;
+    {
+        for(int i = 0; i < array.GetLength(0); i++){
+            for(int j = 1; j < array.GetLength(1); j = j+2){
+               for(int k = i + 1; k < array.GetLength(0); k++){
+                if (array[i, j]>array[k, j]){
+                    temp = array[i, j];
+                    array[i, j] = array[k, j];
+                    array[k, j] = temp;
+                }
+                }
+            }
+        }
+    }
+    return array;
+}
+
+
+
 int InputNumbers(string input)
 {
   Console.Write(input);
