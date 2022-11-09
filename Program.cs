@@ -79,6 +79,8 @@ int[,] GetArray(int m, int n, int minValue, int maxValue){
 
 // Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 
+
+Console.WriteLine("--------------------------------------------------");
 Console.WriteLine("Задача №56");
 
 int c = InputNumbers("Введите размер массива: ");
@@ -112,3 +114,41 @@ void ArraySum(int[,] array)
     Console.WriteLine($"{k+1} строка");
 }
     
+// Задача 58: Задайте две квадратные матрицы. Напишите программу, которая будет находить произведение двух матриц.
+// Например, даны 2 матрицы:
+// 2 4 | 3 4
+// 3 2 | 3 3
+// Результирующая матрица будет:
+// 18 20
+// 15 18
+
+
+Console.WriteLine("--------------------------------------------------");
+Console.WriteLine("Задача №58");
+
+int d = InputNumbers("Введите размер массива: ");
+
+int[,] Array2 = GetArray(d, d, 0, 10);
+int[,] secondArray = GetArray(d, d, 0, 10);
+
+PrintArray(Array2);
+Console.WriteLine();
+PrintArray(secondArray);
+Console.WriteLine();
+PrintArray(resultTurn(Array2));
+
+int[,] resultTurn(int[,] Array2){
+int [,] resultArray = new int[d, d];
+for (int i = 0; i < Array2.GetLength(0); i++)
+{
+    for (int j = 0; j < secondArray.GetLength(1); j++)
+    {
+        resultArray[i, j] = 0;
+        for (int k = 0; k < Array2.GetLength(1); k++)
+        {
+            resultArray[i, j] += Array2[i, k] * secondArray[k, j];
+            }
+        }
+    }
+    return resultArray; 
+}
