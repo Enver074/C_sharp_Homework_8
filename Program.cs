@@ -38,32 +38,6 @@ int[,] ArrayTurn(int[,] array)
     }
     return array;
 }
- 
-int InputNumbers(string input)
-{
-  Console.Write(input);
-  int output = Convert.ToInt32(Console.ReadLine());
-  return output;
-}
-
-void PrintArray(int[,] Array){
-    for(int i = 0; i < Array.GetLength(0); i++){
-        for(int j = 0; j < Array.GetLength(1); j++){
-            Console.Write("{0,4}", $"{Array[i,j]} ");
-        }
-        Console.WriteLine();
-    }
-}
-
-int[,] GetArray(int x, int y, int minValue, int maxValue){
-    int [,] result = new int[x,y];
-    for(int i = 0; i < x; i++){
-        for(int j = 0; j < y; j++){
-            result[i,j] = new Random().Next(minValue,maxValue + 1);
-        }
-    }
-    return result;
-}
 
 // Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
 
@@ -216,3 +190,101 @@ int[,,] GetArray3D(int[,,] array3D){
     return array3D;
 }
 
+// Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
+// Например, на выходе получается вот такой массив:
+// 01 02 03 04
+// 12 13 14 05
+// 11 16 15 06
+// 10 09 08 07
+
+
+Console.WriteLine("--------------------------------------------------");
+Console.WriteLine("Задача №62");
+
+int e = InputNumbers("Введите размер массива; ");
+
+int[,] array = FillArray(e,e);
+
+PrintArray(array);
+
+int[,] FillArray(int x, int y){
+    int [,] result = new int[x,y];
+    int temp = 1;
+    int k = 0;
+
+    if(a%2 == 0)
+    while (temp <= result.GetLength(0) * result.GetLength(1)){
+        for(int j = k; j < result.GetLength(0) - 1 - k; j++){ 
+        result[k,j] = temp;
+        temp++;    
+        }
+
+        for(int i = k; i < result.GetLength(1) - 1 - k; i++){
+        result[i,result.GetLength(1) - 1 - k] = temp;
+        temp++;      
+        }
+        for(int j = result.GetLength(0) - 1 - k; j > k;  j--){
+        result[result.GetLength(0) - 1 - k,j] = temp;
+        temp++;
+        }
+
+        for(int i = result.GetLength(1) - 1 - k; i > k; i--){
+        result[i,k] = temp;
+        temp++;      
+        }
+        k++;
+        }
+
+    if(a%2 != 0)
+    while (temp <= result.GetLength(0) * result.GetLength(1)){
+
+        for(int j = k; j < result.GetLength(0) - k; j++){ 
+        result[k,j] = temp;
+        temp++;    
+        }
+
+        for(int i = k + 1; i < result.GetLength(1) - 1 - k; i++){
+        result[i,result.GetLength(1) - 1 - k] = temp;
+        temp++;      
+        }
+
+        for(int j = result.GetLength(0) - 1 - k; j > k;  j--){
+        result[result.GetLength(0) - 1 - k,j] = temp;
+        temp++;
+        }
+
+        for(int i = result.GetLength(1) - 1 - k; i > k; i--){
+        result[i,k] = temp;
+        temp++;      
+        }
+        k++;
+        }
+
+    return result;
+    }
+
+int InputNumbers(string input)
+{
+  Console.Write(input);
+  int output = Convert.ToInt32(Console.ReadLine());
+  return output;
+}
+
+void PrintArray(int[,] Array){
+    for(int i = 0; i < Array.GetLength(0); i++){
+        for(int j = 0; j < Array.GetLength(1); j++){
+            Console.Write("{0,4}", $"{Array[i,j]} ");
+        }
+        Console.WriteLine();
+    }
+}
+
+int[,] GetArray(int x, int y, int minValue, int maxValue){
+    int [,] result = new int[x,y];
+    for(int i = 0; i < x; i++){
+        for(int j = 0; j < y; j++){
+            result[i,j] = new Random().Next(minValue,maxValue + 1);
+        }
+    }
+    return result;
+}
