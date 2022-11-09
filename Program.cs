@@ -55,10 +55,10 @@ void PrintArray(int[,] Array){
     }
 }
 
-int[,] GetArray(int m, int n, int minValue, int maxValue){
-    int [,] result = new int[m,n];
-    for(int i = 0; i < m; i++){
-        for(int j = 0; j < n; j++){
+int[,] GetArray(int x, int y, int minValue, int maxValue){
+    int [,] result = new int[x,y];
+    for(int i = 0; i < x; i++){
+        for(int j = 0; j < y; j++){
             result[i,j] = new Random().Next(minValue,maxValue + 1);
         }
     }
@@ -152,3 +152,67 @@ for (int i = 0; i < Array2.GetLength(0); i++)
     }
     return resultArray; 
 }
+
+
+// Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+// Массив размером 2 x 2 x 2
+// 66(0,0,0) 25(0,1,0)
+// 34(1,0,0) 41(1,1,0)
+// 27(0,0,1) 90(0,1,1)
+// 26(1,0,1) 55(1,1,1)
+
+
+Console.WriteLine("--------------------------------------------------");
+Console.WriteLine("Задача №60");
+Console.WriteLine($"Введите размер массива X x Y x Z:");
+
+int x = InputNumbers("Введите X: ");
+int y = InputNumbers("Введите Y: ");
+int z = InputNumbers("Введите Z: ");
+
+int[,,] array3D = new int[x,y,z];
+GetArray3D(array3D);
+
+Console.WriteLine($"");
+PrintArray3D(array3D);
+
+void PrintArray3D(int[,,] Array){      // Вывод массива на экран
+    for(int i = 0; i < Array.GetLength(0); i++){
+        for(int j = 0; j < Array.GetLength(1); j++){
+            for(int k = 0; k < Array.GetLength(2); k++){
+                    Console.Write("{0,4}", $"{Array[i,j,k]}{(i, j, k)} ");
+            }
+        }
+        Console.WriteLine();
+    }
+}
+
+
+int[,,] GetArray3D(int[,,] array3D){
+    // Создание одномерного массива заполненный рандомными числами 
+    int [] array = new int[array3D.GetLength(0)*array3D.GetLength(1)*array3D.GetLength(2)];{
+    for(int x = 0; x < array.GetLength(0); x++){
+        array[x] = new Random().Next(10,100);
+        if(x>=1){
+            for (int j = 0; j < x; j++){
+                while (array[x] == array[j]){
+                array[x] = new Random().Next(10, 100);
+                    }
+                }
+            }
+        }
+    }
+
+// Заполнение трехмерного массива
+    int count=0;
+        for(int i = 0; i < x; i++){
+        for(int j = 0; j < y; j++){
+        for(int k = 0; k < z; k++){
+            array3D[i,j,k] = array[count];
+            count++; 
+                }
+            }
+        }
+    return array3D;
+}
+
